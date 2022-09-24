@@ -7,7 +7,7 @@ const reviewExist = async (req, res, next) => {
     if (!review) {
       return res.status(404).json({
         status: "error",
-        message: "review not found",
+        message: "Error: review not found",
       });
     }
     req.review = review;

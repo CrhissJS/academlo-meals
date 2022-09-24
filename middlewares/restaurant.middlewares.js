@@ -12,7 +12,7 @@ const restaurantExist = async (req, res, next) => {
     if (!restaurant) {
       return res.status(404).json({
         status: "error",
-        message: "restaurant not found",
+        message: "Error: restaurant not found",
       });
     }
     req.restaurant = restaurant;

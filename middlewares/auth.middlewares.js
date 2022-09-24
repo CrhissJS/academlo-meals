@@ -19,7 +19,7 @@ const protectSession = async (req, res, next) => {
     if (!token) {
       return res.status(403).json({
         status: "error",
-        message: "invalid session",
+        message: "Error: invalid session",
       });
     }
     //Verifying token...
@@ -34,7 +34,7 @@ const protectSession = async (req, res, next) => {
     if (!user) {
       return res.status(403).json({
         status: "error",
-        message: "The owner of the session is not correct or is inactive",
+        message: "Error: The session owner is not correct or is inactive",
       });
     }
     //Accessing...
@@ -51,7 +51,7 @@ const protectUserAccount = (req, res, next) => {
   if (sessionUser.id !== user.id) {
     return res.status(403).json({
       status: "error",
-      message: "Upps, its not possible, this is not your account",
+      message: "Error: this isn't your account, please login in your own",
     });
   }
   next();
@@ -61,7 +61,7 @@ const protectAdmin = (req, res, next) => {
   if (sessionUser.role !== "admin") {
     return res.status(403).json({
       status: "error",
-      message: "Action denied for normal role",
+      message: "Process denied by normal role, only an admin role can do it",
     });
   }
   next();
@@ -72,7 +72,7 @@ const protectOrderOwners = (req, res, next) => {
   if (sessionUser.id !== order.userId) {
     return res.status(403).json({
       status: "error",
-      message: "Sorry... this is not your order",
+      message: "Error: this is not your order",
     });
   }
   next();
@@ -83,7 +83,7 @@ const protectReviewOwners = (req, res, next) => {
   if (sessionUser.id !== review.userId) {
     return res.status(403).json({
       status: "error",
-      message: "Sorry... this is not your review",
+      message: "Error: this is not your review",
     });
   }
   next();

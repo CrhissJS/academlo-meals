@@ -10,7 +10,7 @@ const userExist = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({
         status: "error",
-        message: "user not found",
+        message: "Error: user not found",
       });
     }
     req.user = user;

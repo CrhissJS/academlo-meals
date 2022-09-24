@@ -1,6 +1,6 @@
 const express = require("express");
 
-//Controllers...
+// Controllers
 const {
   createUser,
   logInUser,
@@ -11,7 +11,7 @@ const {
   login,
 } = require("../controllers/user.controller");
 
-//Middlewares...
+// Middlewares
 const { userExist } = require("../middlewares/user.middlewares");
 const { orderExist } = require("../middlewares/order.middlewares");
 const { userValidations } = require("../middlewares/validators.middlewares");
@@ -25,14 +25,14 @@ const {
 const userRouter = express.Router();
 
 userRouter.post("/login", login);
-userRouter.post("/signup", userValidations, createUser); //Requiring validations...
+userRouter.post("/signup", userValidations, createUser);
 
-//Protecting routes con jwt...
+// Protecting routes using jwt
 userRouter.use(protectSession);
 
-userRouter.patch("/:id", userExist, protectUserAccount, updateUser); //Protecting account...
-userRouter.delete("/:id", userExist, protectUserAccount, deleteUser); //Protecting account...
+userRouter.patch("/:id", userExist, protectUserAccount, updateUser);
+userRouter.delete("/:id", userExist, protectUserAccount, deleteUser);
 userRouter.get("/orders", getAllOrdersByUser);
-userRouter.get("/orders/:id", orderExist, protectOrderOwners, getOrderByUser); //Protecting owner...
+userRouter.get("/orders/:id", orderExist, protectOrderOwners, getOrderByUser);
 
 module.exports = { userRouter };

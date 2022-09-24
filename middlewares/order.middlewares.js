@@ -13,7 +13,7 @@ const orderExist = async (req, res, next) => {
     if (!order) {
       return res.status(404).json({
         status: "error",
-        message: "order not found",
+        message: "Error: order not found",
       });
     }
     req.order = order;

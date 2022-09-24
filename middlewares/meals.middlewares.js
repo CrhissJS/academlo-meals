@@ -11,7 +11,7 @@ const mealExist = async (req, res, next) => {
     if (!meal) {
       return res.status(404).json({
         status: "error",
-        message: "meal not found",
+        message: "Error: meal not found",
       });
     }
     req.meal = meal;

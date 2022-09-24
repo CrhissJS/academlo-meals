@@ -1,6 +1,6 @@
 const express = require("express");
 
-//Controllers...
+// Controllers
 const {
   createOrder,
   getAllOrders,
@@ -8,7 +8,7 @@ const {
   CancelOrder,
 } = require("../controllers/order.controller");
 
-//Middlewares...
+// Middlewares
 const { orderExist } = require("../middlewares/order.middlewares");
 const {
   protectSession,
@@ -17,12 +17,12 @@ const {
 
 const orderRouter = express.Router();
 
-//Protecting routes con jwt...
+// Protecting routes using jwt
 orderRouter.use(protectSession);
 
 orderRouter.post("/", createOrder);
 orderRouter.get("/me", getAllOrders);
-orderRouter.patch("/:id", orderExist, protectOrderOwners, CompleteOrder); //Protecting owner...
-orderRouter.delete("/:id", orderExist, protectOrderOwners, CancelOrder); //Protecting owner...
+orderRouter.patch("/:id", orderExist, protectOrderOwners, CompleteOrder);
+orderRouter.delete("/:id", orderExist, protectOrderOwners, CancelOrder);
 
 module.exports = { orderRouter };
